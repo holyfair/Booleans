@@ -6,15 +6,15 @@ namespace Booleans.Models
     internal class Account
     {
         private decimal _balance;
+        private decimal _piggyBank;
         #region Properties
 
-        public string Balance
-        {
-            get => _balance.ToString() + " грн";
-        }
+        public string Balance => _balance + " UAH";
         public string Category { get; set; }
         public string ClientId { get; set; }
         public Card AccountCard { get; set; }
+
+        public string PiggyBank => _piggyBank + " UAH";
 
 
         public string CardNumber
@@ -30,11 +30,12 @@ namespace Booleans.Models
 
 
         #region Constructor
-        public Account(decimal balance, string category, string clientId, Card card)
+        public Account(decimal balance, string category, string clientId, decimal piggyBank, Card card)
         {
             _balance = balance;
             Category = category;
             ClientId = clientId;
+            _piggyBank = piggyBank;
             AccountCard = card;
         }
         #endregion

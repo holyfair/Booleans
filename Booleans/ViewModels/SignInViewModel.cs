@@ -108,7 +108,7 @@ namespace Booleans.ViewModels
 
         private void GenerateCurrentAccounts()
         {
-            string sql = $"SELECT \"Account\".\"AccountNumber\", \"Balance\", \"Category\", \"ClientId\"," +
+            string sql = $"SELECT \"Account\".\"AccountNumber\", \"Balance\", \"Category\", \"PiggyBank\", \"ClientId\"," +
                          $" \"Pin\", \"ExpireDate\", \"Limit\", \"CardNumber\"" +
                          $" FROM \"Account\" JOIN \"Card\" ON" +
                          $" \"Account\".\"AccountNumber\" = \"Card\".\"AccountNumber\" WHERE \"ClientId\"=@clientId";
@@ -124,14 +124,15 @@ namespace Booleans.ViewModels
                         var accountNumber = reader.GetString(0);
                         var balance = reader.GetDecimal(1);
                         var category = reader.GetString(2);
-                        var clientId = reader.GetString(3);
-                        var pin = reader.GetString(4);
-                        var expireDate = reader.GetDateTime(5);
-                        var limit = reader.GetDecimal(6);
-                        var cardNumber = reader.GetString(7);
+                        var piggyBank = reader.GetDecimal(3);
+                        var clientId = reader.GetString(4);
+                        var pin = reader.GetString(5);
+                        var expireDate = reader.GetDateTime(6);
+                        var limit = reader.GetDecimal(7);
+                        var cardNumber = reader.GetString(8);
 
                         StationManager.DataStorage.CurrentAccounts.Add(
-                            new Account(balance, category, clientId, 
+                            new Account(balance, category, clientId, piggyBank,
                                 new Card(cardNumber, expireDate, limit, pin, accountNumber)));
 
                     }
