@@ -4,16 +4,21 @@
 winexe
 C#
 .cs
-D:\Booleans\Booleans\obj\Debug\
+C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\
 Booleans
 none
 false
 DEBUG;TRACE
-D:\Booleans\Booleans\App.xaml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\App.xaml
 5-774389006
 
+<<<<<<< HEAD
 341382837590
 138998027709
+=======
+32-1735952895
+1381141752918
+>>>>>>> 1403c315e10d09f39c14de6f279b18d54793b566
 MainWindow.xaml;Views\MainView.xaml;Views\SignInView.xaml;Views\TransferView.xaml;Views\WelcomeView.xaml;
 
 True
