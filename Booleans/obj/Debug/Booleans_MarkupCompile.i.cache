@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Booleans\Booleans\obj\Debug\
+C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\
 Booleans
 none
 false
 DEBUG;TRACE
-D:\Booleans\Booleans\App.xaml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\App.xaml
 5-774389006
 
-332018912857
-138998027709
+331021708724
+1381141752918
 MainWindow.xaml;Views\MainView.xaml;Views\SignInView.xaml;Views\TransferView.xaml;Views\WelcomeView.xaml;
 
-True
+False
 
