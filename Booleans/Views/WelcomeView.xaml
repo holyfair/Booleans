@@ -54,6 +54,7 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -70,9 +71,11 @@
                 <TextBlock Grid.Row="4" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.Category}"></TextBlock>
                 <Label Grid.Row="5" Grid.Column="0" FontWeight="Light" FontSize="20">Balance:</Label>
                 <TextBlock Grid.Row="5" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.Balance}"></TextBlock>
+                <Label Grid.Row="6" Grid.Column="0" FontWeight="Light" FontSize="20">Piggy bank:</Label>
+                <TextBlock Grid.Row="6" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.PiggyBank}"></TextBlock>
             </Grid>
         </StackPanel>
-        <Button Grid.Column="1" Grid.Row="7" Content="Transfer" FontWeight="Bold" FontSize="20" Command="{Binding GoTransferCommand}"></Button>
+        <Button Grid.Column="1" Grid.Row="6" Content="Transfer" Margin="10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="20" Command="{Binding GoTransferCommand}"></Button>
     </Grid>
 
 </UserControl>

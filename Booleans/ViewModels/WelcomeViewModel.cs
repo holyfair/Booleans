@@ -15,7 +15,7 @@ namespace Booleans.ViewModels
         private RelayCommand<object> _goTransferCommand;
         private string _description;
         private Account _selectedAccount;
-
+        private bool _isActiveTransfer;
         public Account SelectedAccount
         {
             get => _selectedAccount;
@@ -23,6 +23,17 @@ namespace Booleans.ViewModels
             {
                 _selectedAccount = value;
                 Description = "Visible";
+                IsActiveTransfer = true;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsActiveTransfer
+        {
+            get => _isActiveTransfer;
+            set
+            {
+                _isActiveTransfer = value;
                 OnPropertyChanged();
             }
         }
@@ -41,6 +52,7 @@ namespace Booleans.ViewModels
         public WelcomeViewModel()
         {
             Description = "Hidden";
+            IsActiveTransfer = false;
             Accounts = StationManager.DataStorage.CurrentAccounts;
         }
 
