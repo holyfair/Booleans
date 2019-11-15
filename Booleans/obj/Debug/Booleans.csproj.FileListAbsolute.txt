@@ -136,3 +136,5 @@ C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.csproj.GenerateR
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.csproj.CopyComplete
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.exe
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.pdb
+D:\Booleans\Booleans\obj\Debug\Views\LimitView.g.cs
+D:\Booleans\Booleans\obj\Debug\Views\LimitView.baml

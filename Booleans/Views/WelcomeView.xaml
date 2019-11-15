@@ -61,13 +61,13 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  FontSize="30">Description:</Label>
-                <Label Grid.Row="1" Grid.Column="0" FontWeight="Light" FontSize="20">Card number: </Label>
+                <Label Grid.Row="1" Grid.Column="0" FontWeight="Light" FontSize="20">Card number:</Label>
                 <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.CardNumber}"></TextBlock>
-                <Label Grid.Row="2" Grid.Column="0" FontWeight="Light" FontSize="20">Expire date: </Label>
+                <Label Grid.Row="2" Grid.Column="0" FontWeight="Light" FontSize="20">Expire date:</Label>
                 <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.AccountCard.ExpireDate, StringFormat={}{0:MM/dd/yyyy}}"></TextBlock>
-                <Label Grid.Row="3" Grid.Column="0" FontWeight="Light" FontSize="20">Limit: </Label>
+                <Label Grid.Row="3" Grid.Column="0" FontWeight="Light" FontSize="20">Limit:</Label>
                 <TextBlock Grid.Row="3" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.AccountCard.Limit}"></TextBlock>
-                <Label Grid.Row="4" Grid.Column="0" FontWeight="Light" FontSize="20">Category: </Label>
+                <Label Grid.Row="4" Grid.Column="0" FontWeight="Light" FontSize="20">Category:</Label>
                 <TextBlock Grid.Row="4" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.Category}"></TextBlock>
                 <Label Grid.Row="5" Grid.Column="0" FontWeight="Light" FontSize="20">Balance:</Label>
                 <TextBlock Grid.Row="5" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.Balance}"></TextBlock>
@@ -76,6 +76,7 @@
             </Grid>
         </StackPanel>
         <Button Grid.Column="1" Grid.Row="6" Content="Transfer" Margin="10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="20" Command="{Binding GoTransferCommand}"></Button>
+        <Button Grid.Column="2" Grid.Row="6" Content="Change limit" Margin="90,10,90,10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="16" Command="{Binding GoLimitCommand}"></Button>
     </Grid>
 
 </UserControl>
