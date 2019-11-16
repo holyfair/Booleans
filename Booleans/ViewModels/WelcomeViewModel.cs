@@ -6,13 +6,15 @@ using Booleans.Models;
 using Booleans.Tools;
 using Booleans.Tools.Managers;
 using Booleans.Tools.Navigation;
+using Booleans.Views;
 
 namespace Booleans.ViewModels
 {
-    class WelcomeViewModel: BaseViewModel
+    class WelcomeViewModel : BaseViewModel
     {
         private RelayCommand<object> _backCommand;
         private RelayCommand<object> _goTransferCommand;
+        private RelayCommand<object> _goLimitCommand;
         private string _description;
         private Account _selectedAccount;
         private bool _isActiveTransfer;
@@ -37,7 +39,7 @@ namespace Booleans.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public List<Account> Accounts { get; set; }
         public string Description
         {
@@ -68,6 +70,17 @@ namespace Booleans.ViewModels
             get
             {
                 return _goTransferCommand ?? (_goTransferCommand = new RelayCommand<object>(o => NavigationManager.Instance.Navigate(ViewType.Transfer)));
+            }
+        }
+        public RelayCommand<Object> GoLimitCommand
+        {
+            get
+            {
+                return _goLimitCommand ?? (_goLimitCommand = new RelayCommand<object>(o =>
+                {
+                    var newWindow = new LimitView();
+                    newWindow.ShowDialog();
+                }));
             }
         }
     }
