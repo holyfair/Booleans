@@ -39,11 +39,16 @@ namespace Booleans.Models
             _piggyBank = piggyBank;
             AccountCard = card;
         }
+
+        public Account(string accountNumber, decimal balance, decimal piggyBank)
+            :this(balance, "", "", piggyBank, new Card(accountNumber))
+        {
+        }
         #endregion
 
         public override string ToString()
         {
-            return $"{nameof(Balance)}: {Balance}, {nameof(Category)}: {Category}," +
+            return $"{nameof(BalanceDecimal)}: {BalanceDecimal}, {nameof(Category)}: {Category}," +
                    $" {nameof(ClientId)}: {ClientId}, {nameof(AccountCard)}: {AccountCard}";
         }
     }

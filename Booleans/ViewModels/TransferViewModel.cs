@@ -1,4 +1,5 @@
 ﻿using System;
+using Booleans.Models;
 using Booleans.Tools;
 using Booleans.Tools.Managers;
 using Booleans.Tools.Navigation;
@@ -7,7 +8,7 @@ namespace Booleans.ViewModels
 {
     class TransferViewModel: BaseViewModel
     {
-        private string _accountNumber;
+        private string _cardNumber;
         private decimal _amount;
         private string _accountType;
         private string _frequency;
@@ -15,12 +16,12 @@ namespace Booleans.ViewModels
         private RelayCommand<object> _closeCommand;
         private RelayCommand<object> _acceptCommand;
 
-        public string AccountNumber
+        public string CardNumber
         {
-            get => _accountNumber;
+            get => _cardNumber;
             set
             {
-                _accountNumber = value;
+                _cardNumber = value;
                 OnPropertyChanged();
             }
         }
@@ -40,7 +41,7 @@ namespace Booleans.ViewModels
             get => _accountType;
             set
             {
-                _accountNumber = value;
+                _accountType = value;
                 OnPropertyChanged();
             }
         }
@@ -67,10 +68,15 @@ namespace Booleans.ViewModels
         {
             get
             {
-                return _acceptCommand ?? (_acceptCommand = new RelayCommand<object>(o => NavigationManager.Instance.Navigate(ViewType.Welcome)));
+                return _acceptCommand ?? (_acceptCommand = new RelayCommand<object>(o => Accept()));
             }
         }
 
-        private void 
+        private void Accept()
+        {
+
+            ITransfer transfer = new Transfer(CardNumber, StationManager.DataStorage.CurrentAccount, Amount);
+            transfer.DoTransfer();
+        }
     }
 }

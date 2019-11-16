@@ -22,6 +22,11 @@ namespace Booleans.Models
             Pin = pin;
             AccountNumber = accountNumber;
         }
+
+        public Card(string accountNumber)
+        {
+            AccountNumber = accountNumber;
+        }
         #endregion
 
         public override string ToString()

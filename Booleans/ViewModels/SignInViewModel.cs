@@ -120,7 +120,6 @@ namespace Booleans.ViewModels
                 {
                     while (reader.Read())
                     {
-                        Console.WriteLine(reader.IsOnRow);
                         var accountNumber = reader.GetString(0);
                         var balance = reader.GetDecimal(1);
                         var category = reader.GetString(2);

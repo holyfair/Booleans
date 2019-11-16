@@ -10,5 +10,6 @@ namespace Booleans.DataStorage
         public Card CurrentCard { get; set; }
         public Client CurrentClient { get; set; }
         public List<Account> CurrentAccounts { get; set; } = new List<Account>();
+        public Account CurrentAccount { get ; set ; }
     }
 }

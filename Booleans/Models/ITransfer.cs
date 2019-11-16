@@ -8,6 +8,10 @@ namespace Booleans.Models
 {
     internal interface ITransfer
     {
+        string CardNumberTo { get; set; }
+        Account AccountFrom { get; set; }
+        decimal Amount { get; set; }
+
         void DoTransfer();
     }
 }
