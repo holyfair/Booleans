@@ -123,7 +123,9 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ITransfer.cs" />
     <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\TransferDB.cs" />
     <Compile Include="Tools\BaseViewModel.cs" />
     <Compile Include="Tools\Managers\CardNumberConverter.cs" />
     <Compile Include="Tools\Managers\ConnectionManager.cs" />

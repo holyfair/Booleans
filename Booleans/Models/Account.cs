@@ -9,7 +9,8 @@ namespace Booleans.Models
         private decimal _piggyBank;
         #region Properties
 
-        public string Balance => _balance + " UAH";
+        public string BalanceString => _balance + " UAH";
+        public decimal BalanceDecimal => _balance;
         public string Category { get; set; }
         public string ClientId { get; set; }
         public Card AccountCard { get; set; }

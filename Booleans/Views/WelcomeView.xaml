@@ -39,7 +39,7 @@
                             <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="0" Name="CardName"
                                        Text="{Binding Category}"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" Name="CardNumber" Text="{Binding CardNumber}"/>
-                            <TextBlock Grid.Row="1" Grid.Column="2" Name="Balance" Text="{Binding Balance}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Name="Balance" Text="{Binding BalanceString}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -70,7 +70,7 @@
                 <Label Grid.Row="4" Grid.Column="0" FontWeight="Light" FontSize="20">Category:</Label>
                 <TextBlock Grid.Row="4" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.Category}"></TextBlock>
                 <Label Grid.Row="5" Grid.Column="0" FontWeight="Light" FontSize="20">Balance:</Label>
-                <TextBlock Grid.Row="5" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.Balance}"></TextBlock>
+                <TextBlock Grid.Row="5" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.BalanceString}"></TextBlock>
                 <Label Grid.Row="6" Grid.Column="0" FontWeight="Light" FontSize="20">Piggy bank:</Label>
                 <TextBlock Grid.Row="6" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.PiggyBank}"></TextBlock>
             </Grid>
