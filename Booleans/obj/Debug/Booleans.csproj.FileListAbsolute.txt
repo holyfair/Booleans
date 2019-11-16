@@ -138,5 +138,8 @@ C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.exe
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.pdb
 D:\Booleans\Booleans\obj\Debug\Views\LimitView.g.cs
 D:\Booleans\Booleans\obj\Debug\Views\LimitView.baml
+<<<<<<< HEAD
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\LimitView.g.cs
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\LimitView.baml
+=======
+>>>>>>> cd6dfb3d91077ef0242de69a7ce11473c4d24189
