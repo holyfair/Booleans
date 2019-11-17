@@ -82,3 +82,5 @@ C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\Successful.g.cs
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\Successful.baml
 C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\WpfAnimatedGif.dll
 C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\WpfAnimatedGif.xml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\RecipientView.g.cs
+C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\RecipientView.baml

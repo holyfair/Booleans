@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Windows.Controls;
+using Booleans.Exceptions;
 using Booleans.Models;
 using Booleans.Tools;
 using Booleans.Tools.Managers;
 using Booleans.Tools.Navigation;
+using Booleans.Views;
+using Npgsql;
 
 namespace Booleans.ViewModels
 {
@@ -64,12 +67,38 @@ namespace Booleans.ViewModels
             }
         }
 
+        private Client getClientTo()
+        {
+            string sql = $"SELECT \"Surname\", \"Name\" FROM (\"Client\" JOIN \"Account\" ON  \"Client\".\"ClientId\" = " +
+                         $"\"Account\".\"ClientId\") JOIN \"Card\" ON \"Card\".\"AccountNumber\" = \"Account\".\"AccountNumber\"" +
+                         $" WHERE \"Card\".\"CardNumber\" = @cardNumber";
+
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
+            {
+                command.Parameters.AddWithValue("@cardNumber", CardNumber.Replace(" ", ""));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        var surname = reader.GetString(0);
+                        var name = reader.GetString(1);
+
+                        return new Client(surname, name);
+                    }
+                    else
+                    {
+                        throw new DatabaseException("Client doesn't exist!");
+                    }
+                }
+
+            }
+        }
+
         private void Accept()
         {
-
             TransferDB transfer = new TransferDB(CardNumber, StationManager.DataStorage.CurrentAccount, Amount, SelectedPaymentType.Content.ToString());
-            transfer.DoTransfer();
-            transfer.SaveTransferToDB();
+            var newWindow = new RecipientView(transfer, getClientTo());
+            newWindow.ShowDialog();
         }
     }
 }

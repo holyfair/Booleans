@@ -160,6 +160,7 @@
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\RecipientViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\TransferViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
@@ -168,6 +169,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecipientView.xaml.cs">
+      <DependentUpon>RecipientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignInView.xaml.cs">
       <DependentUpon>SignInView.xaml</DependentUpon>
@@ -198,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
