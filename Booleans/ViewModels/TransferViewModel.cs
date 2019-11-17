@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Booleans.Exceptions;
 using Booleans.Models;
@@ -96,9 +97,18 @@ namespace Booleans.ViewModels
 
         private void Accept()
         {
-            TransferDB transfer = new TransferDB(CardNumber, StationManager.DataStorage.CurrentAccount, Amount, SelectedPaymentType.Content.ToString());
-            var newWindow = new RecipientView(transfer, getClientTo());
-            newWindow.ShowDialog();
+            try
+            {
+                TransferDB transfer = new TransferDB(CardNumber, StationManager.DataStorage.CurrentAccount, Amount,
+                    SelectedPaymentType.Content.ToString());
+                var newWindow = new RecipientView(transfer, getClientTo());
+                newWindow.ShowDialog();
+            }
+            catch (DatabaseException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
     }
 }
