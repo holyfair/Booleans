@@ -2,6 +2,8 @@
 using Booleans.Tools.Managers;
 using Npgsql;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Booleans.Exceptions;
@@ -57,45 +59,53 @@ namespace Booleans.ViewModels
                 return _signInCommand ?? (_signInCommand = new RelayCommand<object>(
                            o =>
                            {
-                               string sql = $"SELECT \"Pin\", \"ExpireDate\", \"Limit\", \"AccountNumber\" FROM \"Card\" WHERE \"CardNumber\"=@cardnumber";
-
-                               using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
-                               {
-                                   command.Parameters.AddWithValue("@cardnumber", CardNumber.Text.Replace(" ", ""));
-                                   using (NpgsqlDataReader reader = command.ExecuteReader())
-                                   {
-                                       if (reader.HasRows)
-                                       {
-                                           reader.Read();
-                                           var pin = reader.GetString(0);
-                                           var expireDate = reader.GetDateTime(1);
-                                           var limit = reader.GetDecimal(2);
-                                           var accountNumber = reader.GetString(3);
-
-                                           if (HashManager.VerifyHashedPassword(pin, Pin.Password))
-                                           {
-                                               StationManager.DataStorage.CurrentCard = new Card(CardNumber.Text.Replace(" ", ""), expireDate, limit, pin, accountNumber);
-                                           }
-                                           else
-                                           {
-                                               MessageBox.Show("Not valid pin!");
-                                               return;
-                                           }
-                                       }
-                                       else
-                                       {
-                                           MessageBox.Show("Not valid card!");
-                                           return;
-                                       }
-                                   }
-
-                               }
-                               GenerateCurrentClient();
-                               GenerateCurrentAccounts();
-                               Console.WriteLine(StationManager.DataStorage.CurrentAccounts.Count);
-                               NavigationManager.Instance.Navigate(ViewType.Welcome);
+                               LogIn();
                            }));
             }
+        }
+
+        private async void LogIn()
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() => Thread.Sleep(2000));
+            string sql = $"SELECT \"Pin\", \"ExpireDate\", \"Limit\", \"AccountNumber\" FROM \"Card\" WHERE \"CardNumber\"=@cardnumber";
+
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
+            {
+                command.Parameters.AddWithValue("@cardnumber", CardNumber.Text.Replace(" ", ""));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        var pin = reader.GetString(0);
+                        var expireDate = reader.GetDateTime(1);
+                        var limit = reader.GetDecimal(2);
+                        var accountNumber = reader.GetString(3);
+
+                        if (HashManager.VerifyHashedPassword(pin, Pin.Password))
+                        {
+                            StationManager.DataStorage.CurrentCard = new Card(CardNumber.Text.Replace(" ", ""), expireDate, limit, pin, accountNumber);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Not valid pin!");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not valid card!");
+                        return;
+                    }
+                }
+
+            }
+            GenerateCurrentClient();
+            GenerateCurrentAccounts();
+            Console.WriteLine(StationManager.DataStorage.CurrentAccounts.Count);
+            NavigationManager.Instance.Navigate(ViewType.Welcome);
+            LoaderManager.Instance.HideLoader();
         }
 
         public RelayCommand<Object> CloseCommand
@@ -120,7 +130,6 @@ namespace Booleans.ViewModels
                 {
                     while (reader.Read())
                     {
-                        Console.WriteLine(reader.IsOnRow);
                         var accountNumber = reader.GetString(0);
                         var balance = reader.GetDecimal(1);
                         var category = reader.GetString(2);

@@ -69,7 +69,11 @@ namespace Booleans.ViewModels
         {
             get
             {
-                return _goTransferCommand ?? (_goTransferCommand = new RelayCommand<object>(o => NavigationManager.Instance.Navigate(ViewType.Transfer)));
+                return _goTransferCommand ?? (_goTransferCommand = new RelayCommand<object>(o =>
+                {
+                    StationManager.DataStorage.CurrentAccount = SelectedAccount;
+                    NavigationManager.Instance.Navigate(ViewType.Transfer);
+                }));
             }
         }
         public RelayCommand<Object> GoLimitCommand

@@ -14,10 +14,7 @@ namespace Booleans
     /// </summary>
     public partial class MainWindow : MetroWindow, IContentOwner
     {
-        public ContentControl ContentControl
-        {
-            get { return _contentControl; }
-        }
+        public ContentControl ContentControl => _contentControl;
 
         public MainWindow()
         {

@@ -20,21 +20,21 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" >Enter account number:</Label>
-        <xctk:MaskedTextBox Grid.Column="1" Name="AccountNumber" Grid.ColumnSpan="2" Grid.Row="0"  Mask="0000 0000 0000 0000" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="150,0,150,0"/>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" >Enter card number:</Label>
+        <xctk:MaskedTextBox Grid.Column="1" Name="AccountNumber" Grid.ColumnSpan="2" Grid.Row="0"  Mask="0000 0000 0000 0000" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="150,0,150,0" Text="{Binding CardNumber}"/>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" >Enter the amount:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="NumberTextBox" PreviewTextInput="NumberValidationTextBox" Margin="150,0,150,0"/>
-        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" >Select an account type:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="NumberTextBox" PreviewTextInput="NumberValidationTextBox" Margin="150,0,150,0" Text="{Binding Amount}"/>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" >Select a payment type:</Label>
         <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="150,0,150,0" 
-                  SelectedItem="{Binding SelectedDays}">
-            <ComboBoxItem IsSelected="True">Main</ComboBoxItem >
-            <ComboBoxItem IsSelected="True">Piggy Bank</ComboBoxItem >
+                  SelectedItem="{Binding SelectedPaymentType}">
+            <ComboBoxItem IsSelected="True" Content="Main"></ComboBoxItem >
+            <ComboBoxItem IsSelected="True" Content="Piggy Bank"></ComboBoxItem >
         </ComboBox>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" >Select a frequency:</Label>
-        <Button Content="Close" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="15" Command="{Binding CloseCommand}"/>
+        <Button Content="Back" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="15" Command="{Binding CloseCommand}"/>
 
         <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="150,0,150,0" IsEditable="True" 
-                  SelectedItem="{Binding SelectedDays}">
+                  SelectedItem="{Binding SelectedNumberOfDays}">
             <ComboBoxItem IsSelected="True">never</ComboBoxItem >
             <ComboBoxItem IsSelected="True">30</ComboBoxItem >
             <ComboBoxItem IsSelected="True">90</ComboBoxItem >
