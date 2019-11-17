@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 using Booleans.Models;
 using Booleans.Tools;
 using Booleans.Tools.Managers;
@@ -35,7 +36,7 @@ namespace Booleans.ViewModels
             }
         }
 
-        public string SelectedPaymentType { get; set; }
+        public ComboBoxItem SelectedPaymentType { get; set; }
 
         public decimal Amount
         {
@@ -66,8 +67,9 @@ namespace Booleans.ViewModels
         private void Accept()
         {
 
-            ITransfer transfer = new Transfer(CardNumber, StationManager.DataStorage.CurrentAccount, Amount, SelectedPaymentType);
+            TransferDB transfer = new TransferDB(CardNumber, StationManager.DataStorage.CurrentAccount, Amount, SelectedPaymentType.Content.ToString());
             transfer.DoTransfer();
+            transfer.SaveTransferToDB();
         }
     }
 }

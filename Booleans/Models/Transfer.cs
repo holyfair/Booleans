@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using Booleans.Tools.Managers;
+using Booleans.Views;
 using Npgsql;
-using NpgsqlTypes;
 
 namespace Booleans.Models
 {
@@ -14,7 +15,7 @@ namespace Booleans.Models
         public string PaymentType { get; set; }
 
 
-        private Account AccountTo { get; set; }
+        protected Account AccountTo { get; set; }
 
         public Transfer(string cardNumberTo, Account accountFrom, decimal amount, string paymentType)
         {
@@ -34,9 +35,7 @@ namespace Booleans.Models
             {
                 if (IsAccountToValid())
                 {
-                    WithdrawMoney(PaymentType);
-                    DepositMoney();
-                    MessageBox.Show("Successful");
+                    MakeTransition();
                 }
                 else
                 {
@@ -51,6 +50,7 @@ namespace Booleans.Models
 
         private void DepositMoney()
         {
+            var account = StationManager.DataStorage.GetAccountByAccountNumber(AccountTo.AccountCard.AccountNumber);
             string sql = "UPDATE \"Account\" SET " +
                          "\"Balance\" = @balance, \"PiggyBank\" = @piggyBank Where \"AccountNumber\" = @accountNumber";
 
@@ -60,8 +60,14 @@ namespace Booleans.Models
                 var newBalance = AccountTo.BalanceDecimal + (Amount - rest);
 
                 command.Parameters.AddWithValue("@balance", newBalance);
-                command.Parameters.AddWithValue("@piggyBank", rest);
+                command.Parameters.AddWithValue("@piggyBank", AccountTo.PiggyBankDecimal + rest);
                 command.Parameters.AddWithValue("@accountNumber", AccountTo.AccountCard.AccountNumber);
+                if (account != null)
+                {
+                    account.BalanceDecimal = newBalance;
+                    account.PiggyBankDecimal = rest + account.PiggyBankDecimal;
+                }
+
 
                 command.ExecuteNonQuery();
             }
@@ -70,25 +76,41 @@ namespace Booleans.Models
         private void WithdrawMoney(string paymentType)
         {
             string sql = "";
+            decimal newBalance = 0;
+            var account = StationManager.DataStorage.GetAccountByAccountNumber(AccountFrom.AccountCard.AccountNumber);
             if (paymentType == "Main")
             {
                 sql = "UPDATE \"Account\" SET " +
                       "\"Balance\" = @balance Where \"AccountNumber\" = @accountNumber";
+                newBalance = StationManager.DataStorage.CurrentAccount.BalanceDecimal - Amount;
+                account.BalanceDecimal = newBalance;
             }
             else
             {
                 sql = "UPDATE \"Account\" SET " +
                       "\"PiggyBank\" = @balance Where \"AccountNumber\" = @accountNumber";
+                newBalance = StationManager.DataStorage.CurrentAccount.PiggyBankDecimal - Amount;
+                account.PiggyBankDecimal = newBalance;
             }
 
             using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
             {
-                var newBalance = StationManager.DataStorage.CurrentAccount.BalanceDecimal - Amount;
                 command.Parameters.AddWithValue("@balance", newBalance);
-                command.Parameters.AddWithValue("@accountNumber", AccountTo.AccountCard.AccountNumber);
+                command.Parameters.AddWithValue("@accountNumber", AccountFrom.AccountCard.AccountNumber);
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        private async void MakeTransition()
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() => Thread.Sleep(1000));
+            WithdrawMoney(PaymentType);
+            DepositMoney();
+            var successful = new Successful();
+            successful.ShowDialog();
+            LoaderManager.Instance.HideLoader();
         }
 
         private bool IsAccountToValid()

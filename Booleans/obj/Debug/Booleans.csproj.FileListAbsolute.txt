@@ -78,3 +78,7 @@ C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\Stubble.Core.xml
 C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\System.Collections.Immutable.xml
 C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\FontAwesome.WPF.dll
 C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\FontAwesome.WPF.xml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\Successful.g.cs
+C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Views\Successful.baml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\WpfAnimatedGif.dll
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\WpfAnimatedGif.xml

@@ -1,26 +1,33 @@
 ﻿using System;
+using Booleans.Tools.Managers;
+using Npgsql;
+using NpgsqlTypes;
 
 namespace Booleans.Models
 {
     internal class TransferDB : Transfer
     {
-        public static void SaveTransferToDB()
+        public TransferDB(string cardNumberTo, Account accountFrom, decimal amount, string paymentType)
+            : base(cardNumberTo, accountFrom, amount, paymentType)
         {
-            //string sql = "UPDATE \"Account\" SET " +
-            //             "(\"AccountNumberTo\", \"AccountNumberFrom\", \"Money\", \"Date\") " +
-            //             "VALUES(@accountNumberTo, @accountNumberFrom, @money, @date)";
+        }
 
-            //using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
-            //{
-            //    decimal rest = Amount % 10;
-            //    // create parameters
-            //    command.Parameters.AddWithValue("@accountNumberTo", AccountTo.AccountCard.AccountNumber);
-            //    command.Parameters.AddWithValue("@accountNumberFrom", AccountFrom.AccountCard.AccountNumber);
-            //    command.Parameters.AddWithValue("@money", NpgsqlDbType.Money);
-            //    command.Parameters.AddWithValue("@date", NpgsqlDbType.Date);
+        public void SaveTransferToDB()
+        {
+            string sql = "INSERT INTO \"Transfer\" " +
+                         "(\"AccountNumberTo\", \"AccountNumberFrom\", \"Money\", \"Date\", \"PaymentType\") " +
+                         "VALUES(@accountNumberTo, @accountNumberFrom, @money, @date, @paymentType)";
 
-            //    command.ExecuteNonQuery();
-            //}
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
+            {
+                command.Parameters.AddWithValue("@accountNumberTo", AccountTo.AccountCard.AccountNumber);
+                command.Parameters.AddWithValue("@accountNumberFrom", AccountFrom.AccountCard.AccountNumber);
+                command.Parameters.AddWithValue("@money", Amount);
+                command.Parameters.AddWithValue("@date", DateTime.Now);
+                command.Parameters.AddWithValue("@paymentType", PaymentType);
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
