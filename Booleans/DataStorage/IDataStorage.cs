@@ -9,5 +9,8 @@ namespace Booleans.DataStorage
         Card CurrentCard { get; set; }
         List<Account> CurrentAccounts { get; set; }
         Client CurrentClient { get; set; }
+        Account CurrentAccount { get; set; }
+
+        Account GetAccountByAccountNumber(string accountName);
     }
 }

@@ -38,14 +38,26 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.5.0.37524, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.5.0.8\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="LoadingIndicators.WPF, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LoadingIndicators.WPF.0.0.1\lib\LoadingIndicators.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="MrMitch.Loaders, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MrMitch.Loaders.1.2.0.0\lib\net46\MrMitch.Loaders.dll</HintPath>
+    </Reference>
     <Reference Include="Npgsql, Version=4.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.4.1.1\lib\net461\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Stubble.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stubble.Core.1.0.112\lib\net45\Stubble.Core.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Licensing, Version=17.3460.0.19, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Licensing.17.3.0.19\lib\net46\Syncfusion.Licensing.dll</HintPath>
@@ -56,6 +68,9 @@
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -96,6 +111,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
@@ -123,11 +141,15 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ITransfer.cs" />
     <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\TransferDB.cs" />
     <Compile Include="Tools\BaseViewModel.cs" />
+    <Compile Include="Tools\ILoaderOwner.cs" />
     <Compile Include="Tools\Managers\CardNumberConverter.cs" />
     <Compile Include="Tools\Managers\ConnectionManager.cs" />
     <Compile Include="Tools\Managers\HashManager.cs" />
+    <Compile Include="Tools\Managers\LoaderManager.cs" />
     <Compile Include="Tools\Managers\NavigationManager.cs" />
     <Compile Include="Tools\Managers\StationManager.cs" />
     <Compile Include="Tools\Navigation\BaseNavigationModel.cs" />
@@ -138,6 +160,7 @@
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\RecipientViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\TransferViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
@@ -147,8 +170,14 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecipientView.xaml.cs">
+      <DependentUpon>RecipientView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignInView.xaml.cs">
       <DependentUpon>SignInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Successful.xaml.cs">
+      <DependentUpon>Successful.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TransferView.xaml.cs">
       <DependentUpon>TransferView.xaml</DependentUpon>
@@ -176,7 +205,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RecipientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SignInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Successful.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,7 +254,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\successful.gif" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo.jpg" />
   </ItemGroup>
