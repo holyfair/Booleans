@@ -21,6 +21,12 @@ namespace Booleans.Models
             Surname = surname;
             Name = name;
         }
+
+        public Client(string surname, string name)
+        {
+            Surname = surname;
+            Name = name;
+        }
         #endregion
 
         public override string ToString()
