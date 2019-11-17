@@ -11,15 +11,17 @@ namespace Booleans.Models
         public string CardNumberTo { get; set; }
         public Account AccountFrom { get; set; }
         public decimal Amount { get; set; }
+        public string PaymentType { get; set; }
 
 
         private Account AccountTo { get; set; }
 
-        public Transfer(string cardNumberTo, Account accountFrom, decimal amount)
+        public Transfer(string cardNumberTo, Account accountFrom, decimal amount, string paymentType)
         {
             CardNumberTo = cardNumberTo;
             AccountFrom = accountFrom;
             Amount = amount;
+            PaymentType = paymentType;
         }
 
         public Transfer()
@@ -32,6 +34,7 @@ namespace Booleans.Models
             {
                 if (IsAccountToValid())
                 {
+                    WithdrawMoney(PaymentType);
                     DepositMoney();
                     MessageBox.Show("Successful");
                 }
@@ -53,11 +56,35 @@ namespace Booleans.Models
 
             using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
             {
-                decimal rest = Amount % 10;
-                decimal newBalance = AccountTo.BalanceDecimal + (Amount - rest);
+                var rest = Amount % 10;
+                var newBalance = AccountTo.BalanceDecimal + (Amount - rest);
 
                 command.Parameters.AddWithValue("@balance", newBalance);
                 command.Parameters.AddWithValue("@piggyBank", rest);
+                command.Parameters.AddWithValue("@accountNumber", AccountTo.AccountCard.AccountNumber);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private void WithdrawMoney(string paymentType)
+        {
+            string sql = "";
+            if (paymentType == "Main")
+            {
+                sql = "UPDATE \"Account\" SET " +
+                      "\"Balance\" = @balance Where \"AccountNumber\" = @accountNumber";
+            }
+            else
+            {
+                sql = "UPDATE \"Account\" SET " +
+                      "\"PiggyBank\" = @balance Where \"AccountNumber\" = @accountNumber";
+            }
+
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
+            {
+                var newBalance = StationManager.DataStorage.CurrentAccount.BalanceDecimal - Amount;
+                command.Parameters.AddWithValue("@balance", newBalance);
                 command.Parameters.AddWithValue("@accountNumber", AccountTo.AccountCard.AccountNumber);
 
                 command.ExecuteNonQuery();
@@ -94,6 +121,10 @@ namespace Booleans.Models
 
         private bool IsValidTransaction()
         {
+            if (PaymentType != "Main")
+            {
+                return Amount <= AccountFrom.PiggyBankDecimal && Amount <= AccountFrom.AccountCard.Limit;
+            }
             return Amount <= AccountFrom.BalanceDecimal && Amount <= AccountFrom.AccountCard.Limit;
         }
 

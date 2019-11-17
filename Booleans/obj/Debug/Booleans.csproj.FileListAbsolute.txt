@@ -69,3 +69,12 @@ C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.csproj.CopyCompl
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.exe
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.pdb
 C:\Users\Vladislav\Desktop\Booleans\Booleans\obj\Debug\Booleans.csprojAssemblyReference.cache
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\LoadingIndicators.WPF.dll
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\Stubble.Core.dll
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\System.Collections.Immutable.dll
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\LoadingIndicators.WPF.pdb
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\Stubble.Core.pdb
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\Stubble.Core.xml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\FontAwesome.WPF.dll
+C:\Users\Vladislav\Desktop\Booleans\Booleans\bin\Debug\FontAwesome.WPF.xml

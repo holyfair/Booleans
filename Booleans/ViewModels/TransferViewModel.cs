@@ -10,7 +10,6 @@ namespace Booleans.ViewModels
     {
         private string _cardNumber;
         private decimal _amount;
-        private string _accountType;
         private string _frequency;
 
         private RelayCommand<object> _closeCommand;
@@ -36,15 +35,7 @@ namespace Booleans.ViewModels
             }
         }
 
-        public string AccountType
-        {
-            get => _accountType;
-            set
-            {
-                _accountType = value;
-                OnPropertyChanged();
-            }
-        }
+        public string SelectedPaymentType { get; set; }
 
         public decimal Amount
         {
@@ -75,7 +66,7 @@ namespace Booleans.ViewModels
         private void Accept()
         {
 
-            ITransfer transfer = new Transfer(CardNumber, StationManager.DataStorage.CurrentAccount, Amount);
+            ITransfer transfer = new Transfer(CardNumber, StationManager.DataStorage.CurrentAccount, Amount, SelectedPaymentType);
             transfer.DoTransfer();
         }
     }

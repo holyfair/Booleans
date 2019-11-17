@@ -72,7 +72,7 @@
                 <Label Grid.Row="5" Grid.Column="0" FontWeight="Light" FontSize="20">Balance:</Label>
                 <TextBlock Grid.Row="5" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.BalanceString}"></TextBlock>
                 <Label Grid.Row="6" Grid.Column="0" FontWeight="Light" FontSize="20">Piggy bank:</Label>
-                <TextBlock Grid.Row="6" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.PiggyBank}"></TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.PiggyBankString}"></TextBlock>
             </Grid>
         </StackPanel>
         <Button Grid.Column="1" Grid.Row="6" Content="Transfer" Margin="10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="20" Command="{Binding GoTransferCommand}"></Button>

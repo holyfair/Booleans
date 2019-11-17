@@ -15,7 +15,8 @@ namespace Booleans.Models
         public string ClientId { get; set; }
         public Card AccountCard { get; set; }
 
-        public string PiggyBank => _piggyBank + " UAH";
+        public string PiggyBankString => _piggyBank + " UAH";
+        public decimal PiggyBankDecimal => _piggyBank;
 
 
         public string CardNumber

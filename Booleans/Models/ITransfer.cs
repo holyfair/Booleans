@@ -8,9 +8,10 @@ namespace Booleans.Models
 {
     internal interface ITransfer
     {
-        string CardNumberTo { get; set; }
-        Account AccountFrom { get; set; }
-        decimal Amount { get; set; }
+        string CardNumberTo { get; }
+        Account AccountFrom { get; }
+        decimal Amount { get; }
+        string PaymentType { get; }
 
         void DoTransfer();
     }
