@@ -90,12 +90,14 @@ namespace Booleans.ViewModels
                         else
                         {
                             MessageBox.Show("Not valid pin!");
+                            LoaderManager.Instance.HideLoader();
                             return;
                         }
                     }
                     else
                     {
                         MessageBox.Show("Not valid card!");
+                        LoaderManager.Instance.HideLoader();
                         return;
                     }
                 }
