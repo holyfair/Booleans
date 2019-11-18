@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Booleans.Exceptions;
 using Booleans.Tools.Managers;
 using Booleans.Views;
 using Npgsql;
@@ -23,6 +24,10 @@ namespace Booleans.Models
             AccountFrom = accountFrom;
             Amount = amount;
             PaymentType = paymentType;
+            if (!IsAccountToValid())
+                throw new DatabaseException("Not valid card number!");
+            if (!IsValidTransaction())
+                throw new DatabaseException("Not enough money or amount is bigger then limit");
         }
 
         public Transfer()
@@ -31,21 +36,7 @@ namespace Booleans.Models
 
         public virtual void DoTransfer()
         {
-            if (IsValidTransaction())
-            {
-                if (IsAccountToValid())
-                {
-                    MakeTransition();
-                }
-                else
-                {
-                    MessageBox.Show("Card number does not exist!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Not enough money or amount is bigger then limit");
-            }
+            MakeTransition();
         }
 
         private void DepositMoney()
