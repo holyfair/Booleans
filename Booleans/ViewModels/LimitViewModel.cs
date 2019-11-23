@@ -1,12 +1,9 @@
-﻿using Booleans.Models;
-using Booleans.Tools;
+﻿using Booleans.Tools;
 using Booleans.Tools.Managers;
-using Booleans.Tools.Navigation;
+using Booleans.Views;
 using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Booleans.ViewModels
@@ -48,10 +45,9 @@ namespace Booleans.ViewModels
             }
         }
 
-        private void ChangeLimit()
+        private async void ChangeLimit()
         {
-            string sql = "UPDATE \"Account\" SET " +
-                         "\"Limit\" = @limit Where \"AccountNumber\" = @accountNumber";
+            string sql = "UPDATE \"Card\" SET \"Limit\" = @limit Where \"AccountNumber\" = @accountNumber";
             using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
             {
                 command.Parameters.AddWithValue("@limit", Limit);
@@ -59,6 +55,11 @@ namespace Booleans.ViewModels
 
                 command.ExecuteNonQuery();
             }
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() => Thread.Sleep(1000));
+            var successful = new Successful();
+            successful.ShowDialog();
+            LoaderManager.Instance.HideLoader();
             close.Invoke();
         }
     }
