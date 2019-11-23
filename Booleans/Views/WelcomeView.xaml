@@ -75,6 +75,7 @@
                 <TextBlock Grid.Row="6" Grid.Column="1" FontWeight="Light" FontSize="20" Text="{Binding SelectedAccount.PiggyBankDecimal}"></TextBlock>
             </Grid>
         </StackPanel>
+        <Button Grid.Column="0" Grid.Row="6" Content="History" Margin="90,10,90,10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="20" Command="{Binding GoHistoryCommand}"></Button>
         <Button Grid.Column="1" Grid.Row="6" Content="Transfer" Margin="10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="20" Command="{Binding GoTransferCommand}"></Button>
         <Button Grid.Column="2" Grid.Row="6" Content="Change limit" Margin="90,10,90,10" FontWeight="Bold" IsEnabled="{Binding IsActiveTransfer}" FontSize="16" Command="{Binding GoLimitCommand}"></Button>
     </Grid>

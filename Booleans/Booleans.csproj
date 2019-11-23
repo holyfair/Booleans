@@ -159,6 +159,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RecipientViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
+    <Compile Include="ViewModels\TransferHistoryViewModel.cs" />
     <Compile Include="ViewModels\TransferViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Views\LimitView.xaml.cs">
@@ -175,6 +176,9 @@
     </Compile>
     <Compile Include="Views\Successful.xaml.cs">
       <DependentUpon>Successful.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferHistoryView.xaml.cs">
+      <DependentUpon>TransferHistoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TransferView.xaml.cs">
       <DependentUpon>TransferView.xaml</DependentUpon>
@@ -211,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Successful.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TransferHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

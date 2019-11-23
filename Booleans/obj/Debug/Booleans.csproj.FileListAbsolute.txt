@@ -170,3 +170,5 @@ D:\Booleans\Booleans\obj\Debug\Booleans.csproj.GenerateResource.cache
 D:\Booleans\Booleans\obj\Debug\Booleans.csproj.CopyComplete
 D:\Booleans\Booleans\obj\Debug\Booleans.exe
 D:\Booleans\Booleans\obj\Debug\Booleans.pdb
+D:\Booleans\Booleans\obj\Debug\Views\TransferHistoryView.g.cs
+D:\Booleans\Booleans\obj\Debug\Views\TransferHistoryView.baml

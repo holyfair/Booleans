@@ -13,6 +13,7 @@ namespace Booleans.ViewModels
     class WelcomeViewModel : BaseViewModel
     {
         private RelayCommand<object> _backCommand;
+        private RelayCommand<object> _goTransferHistoryCommand;
         private RelayCommand<object> _goTransferCommand;
         private RelayCommand<object> _goLimitCommand;
         private string _description;
@@ -84,6 +85,19 @@ namespace Booleans.ViewModels
                 {
                     StationManager.DataStorage.CurrentAccount = SelectedAccount;
                     var newWindow = new LimitView();
+                    newWindow.ShowDialog();
+                }));
+            }
+        }
+
+        public RelayCommand<Object> GoHistoryCommand
+        {
+            get
+            {
+                return _goTransferHistoryCommand ?? (_goTransferHistoryCommand = new RelayCommand<object>(o =>
+                {
+                    StationManager.DataStorage.CurrentAccount = SelectedAccount;
+                    var newWindow = new TransferHistoryView();
                     newWindow.ShowDialog();
                 }));
             }
