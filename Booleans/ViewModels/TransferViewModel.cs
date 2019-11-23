@@ -97,6 +97,7 @@ namespace Booleans.ViewModels
 
         private void Accept()
         {
+            if (!AreFieldsNotEmpty()) return;
             try
             {
                 TransferDB transfer = new TransferDB(CardNumber, StationManager.DataStorage.CurrentAccount, Amount,
@@ -108,7 +109,29 @@ namespace Booleans.ViewModels
             {
                 MessageBox.Show(e.Message);
             }
-            
+
+        }
+
+        private bool AreFieldsNotEmpty()
+        {
+            if(SelectedPaymentType == null || SelectedPaymentType.Content.ToString() == String.Empty)
+            {
+                MessageBox.Show("The type of payment is not selected");
+                return false;
+            }
+            if (Amount <= 0)
+            {
+                MessageBox.Show("Amount < 0");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(CardNumber))
+            {
+                MessageBox.Show("Card number is empty!");
+                return false;
+            }
+
+            return true;
         }
     }
 }
