@@ -82,6 +82,7 @@ namespace Booleans.ViewModels
             {
                 return _goLimitCommand ?? (_goLimitCommand = new RelayCommand<object>(o =>
                 {
+                    StationManager.DataStorage.CurrentAccount = SelectedAccount;
                     var newWindow = new LimitView();
                     newWindow.ShowDialog();
                 }));
