@@ -105,7 +105,6 @@ namespace Booleans.ViewModels
             }
             GenerateCurrentClient();
             GenerateCurrentAccounts();
-            Console.WriteLine(StationManager.DataStorage.CurrentAccounts.Count);
             NavigationManager.Instance.Navigate(ViewType.Welcome);
             LoaderManager.Instance.HideLoader();
         }

@@ -47,6 +47,8 @@ namespace Booleans.ViewModels
 
         private async void ChangeLimit()
         {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() => Thread.Sleep(1000));
             string sql = "UPDATE \"Card\" SET \"Limit\" = @limit Where \"AccountNumber\" = @accountNumber";
             using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
             {
@@ -55,8 +57,6 @@ namespace Booleans.ViewModels
 
                 command.ExecuteNonQuery();
             }
-            LoaderManager.Instance.ShowLoader();
-            await Task.Run(() => Thread.Sleep(1000));
             var successful = new Successful();
             successful.ShowDialog();
             LoaderManager.Instance.HideLoader();
