@@ -10,6 +10,7 @@ namespace Booleans.DataStorage
         List<Account> CurrentAccounts { get; set; }
         Client CurrentClient { get; set; }
         Account CurrentAccount { get; set; }
+        List<Transfer> CurrentHistory { get; set; }
 
         Account GetAccountByAccountNumber(string accountName);
     }

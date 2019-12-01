@@ -23,7 +23,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <ListBox Margin="20" Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Name="History" ItemsSource="{Binding TransferHistory}">
+        <ListBox Margin="20" Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Name="History" ItemsSource="{Binding CurrentHistory}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4">

@@ -1,5 +1,7 @@
 ﻿using Booleans.Models;
 using Booleans.Tools;
+using Booleans.Tools.Managers;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace Booleans.ViewModels
     internal class TransferHistoryViewModel : BaseViewModel
     {
         private RelayCommand<object> _closeCommand;
-        public List<Transfer> TransferHistory { get; set; }
+        public List<Transfer> CurrentHistory { get; set; }
         private Action close;
 
         public TransferHistoryViewModel(Action close)

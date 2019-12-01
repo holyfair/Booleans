@@ -11,6 +11,8 @@ namespace Booleans.DataStorage
         public List<Account> CurrentAccounts { get; set; } = new List<Account>();
         public Account CurrentAccount { get ; set ; }
 
+        public List<Transfer> CurrentHistory { get; set; } = new List<Transfer>();
+
         public Account GetAccountByAccountNumber(string accountName)
         {
 

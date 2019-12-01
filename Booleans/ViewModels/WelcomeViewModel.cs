@@ -7,6 +7,7 @@ using Booleans.Tools;
 using Booleans.Tools.Managers;
 using Booleans.Tools.Navigation;
 using Booleans.Views;
+using Npgsql;
 
 namespace Booleans.ViewModels
 {
@@ -97,9 +98,32 @@ namespace Booleans.ViewModels
                 return _goTransferHistoryCommand ?? (_goTransferHistoryCommand = new RelayCommand<object>(o =>
                 {
                     StationManager.DataStorage.CurrentAccount = SelectedAccount;
+                    GenerateHistory();
                     var newWindow = new TransferHistoryView();
                     newWindow.ShowDialog();
                 }));
+            }
+        }
+
+        private void GenerateHistory()
+        {
+            string sql = $"SELECT \"AccountNumberTo\", \"Money\", \"PaymentType\" " +
+                $"FROM \"Transfer\" " +
+                $"WHERE \"AccountNumberFrom\" = @currentAccount ";
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, ConnectionManager.GetInstance().Connection))
+            {
+                command.Parameters.AddWithValue("@currentAccount", StationManager.DataStorage.CurrentAccount.AccountCard.AccountNumber);
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var accountNumberTo = reader.GetString(0);
+                        var amount = reader.GetDecimal(1);
+                        var paymentType = reader.GetString(2);
+
+                        StationManager.DataStorage.CurrentHistory.Add(new Transfer(accountNumberTo, (StationManager.DataStorage.CurrentAccount), amount, paymentType));
+                    }
+                }
             }
         }
     }
