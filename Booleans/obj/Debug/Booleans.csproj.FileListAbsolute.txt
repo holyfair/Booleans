@@ -172,3 +172,5 @@ D:\Booleans\Booleans\obj\Debug\Booleans.exe
 D:\Booleans\Booleans\obj\Debug\Booleans.pdb
 D:\Booleans\Booleans\obj\Debug\Views\TransferHistoryView.g.cs
 D:\Booleans\Booleans\obj\Debug\Views\TransferHistoryView.baml
+D:\Booleans\Booleans\bin\Debug\Dapper.dll
+D:\Booleans\Booleans\bin\Debug\Dapper.xml

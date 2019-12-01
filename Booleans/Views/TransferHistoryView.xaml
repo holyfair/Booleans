@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow
+﻿    <Controls:MetroWindow
     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
     x:Class="Booleans.Views.TransferHistoryView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,6 +11,7 @@
         Background="#ffffcc"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -36,10 +37,14 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="0" Name="CardName" Text="{Binding AccountName}"/>
+                            <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="0" Name="Suma" Text="Amount:"/>
+                            <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Name="CardName" Text="{Binding Money}"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" Name="CardNumber" Text="{Binding CardNumber}"/>
-                            <TextBlock Grid.Row="1" Grid.Column="2" Name="Balance" Text="{Binding Money}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" Name="Balance" Text="{Binding Name}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="3" Name="Surname" Text="{Binding Surname}"/>
+
                         </Grid>
                     </Border>
                 </DataTemplate>
